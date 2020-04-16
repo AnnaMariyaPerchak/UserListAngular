@@ -1,0 +1,44 @@
+<div id="main">
+    <form id="inputing">
+        <p>Login</p>
+        <input type="text" [(ngModel)]="userLogin"  name="userLogin" placeholder="Enter login">
+        <p>Password</p>
+        <input type="password" [(ngModel)]="userPassword" name="userPassword" placeholder="Enter password">
+        <p>Email address</p>
+        <input type="email" [(ngModel)]="userEmail" name="userEmail" placeholder="Enter email">
+        
+        <input type="button" *ngIf="formButton" value="Add user" (click)="addUser()" [ngClass]="['btn', 'btn-outline-success']">
+        <input type="button" *ngIf="!formButton" value="Edit user" (click)="saveEdit()" [ngClass]="['btn', 'btn-outline-success']">
+    </form>
+    <!-- (click)="saveEdit()" -->
+    <div id="table">
+        <table id="Table" class="table">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Login</th>
+                    <th scope="col">Password</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Edit</th>
+                    <th scope="col">Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- <th scope="row"></th>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td><input type="button" [ngClass]="['btn' ,'btn-warning']" value="Edit"></td>
+                <td><input type="button" [ngClass]="['btn' ,'btn-danger']" value="Delete"></td> -->
+                <tr *ngFor="let user of users; let i=index">
+                    <td>{{i+1}}</td>
+                    <td>{{user.login}}</td>
+                    <td>{{user.password}}</td>
+                    <td>{{user.email}}</td>
+                    <td><input type="button" [ngClass]="['btn' ,'btn-warning']" (click)="Edit(i)" value="Edit"></td>
+                    <td><input type="button" [ngClass]="['btn' ,'btn-danger']" (click)="Delete(i)" value="Delete"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
